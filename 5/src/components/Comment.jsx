@@ -3,7 +3,17 @@ import { useSelector } from 'react-redux';
 
 const Comment = ({ commentId }) => {
   // BEGIN (write your solution here)
+const { author, comment } = useSelector((state) => {
+  const comment = state.commentsReducer.comments.find(
+    ({ id }) => id === commentId
+  );
 
+  const author = state.usersReducer.users.find(
+    ({ id }) => id === comment?.author
+  );
+
+  return { author, comment };
+});
   // END
 
   if (!author || !comment) {
